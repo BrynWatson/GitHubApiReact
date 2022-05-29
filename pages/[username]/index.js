@@ -12,6 +12,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import Image from "next/image";
 const UserDetail = () => {
   const router = useRouter();
   const { username } = router.query;
@@ -72,7 +74,7 @@ const UserDetail = () => {
                   Name
                 </TableCell>
                 <TableCell align="right">
-                  <Box>{`https://api.github.com/users/${username}/name`}</Box>
+                  <Typography variant="h6">{user.name}</Typography>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -80,7 +82,7 @@ const UserDetail = () => {
                   Login
                 </TableCell>
                 <TableCell align="right">
-                  <Box>{`https://api.github.com/users/${username}/login`}</Box>
+                  <Typography variant="h6">{user.login}</Typography>
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -89,7 +91,17 @@ const UserDetail = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Box>
-                    {`https://api.github.com/users/${username}/avatar_url`}
+                    {user.avatar_url && (
+                      <Image
+                        src={user.avatar_url}
+                        alt={user.name}
+                        width="50px"
+                        height="50px"
+                        sx={{
+                          borderRadius: "50%",
+                        }}
+                      />
+                    )}
                   </Box>
                 </TableCell>
               </TableRow>
@@ -99,7 +111,7 @@ const UserDetail = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Box>
-                    {`https://api.github.com/users/${username}/public_repos`}
+                    <Typography variant="h6">{user.public_repos}</Typography>
                   </Box>
                 </TableCell>
               </TableRow>
@@ -109,7 +121,7 @@ const UserDetail = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Box>
-                    {`https://api.github.com/users/${username}/public_gists`}
+                    <Typography variant="h6">{user.public_gists}</Typography>
                   </Box>
                 </TableCell>
               </TableRow>
@@ -119,7 +131,7 @@ const UserDetail = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Box>
-                    {`https://api.github.com/users/${username}/followers`}
+                    <Typography variant="h6">{user.followers}</Typography>
                   </Box>
                 </TableCell>
               </TableRow>
@@ -129,7 +141,7 @@ const UserDetail = () => {
                 </TableCell>
                 <TableCell align="right">
                   <Box>
-                    {`https://api.github.com/users/${username}/following`}
+                    <Typography variant="h6">{user.following}</Typography>
                   </Box>
                 </TableCell>
               </TableRow>
