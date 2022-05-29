@@ -10,8 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import axios from "axios";
 
-export default function UserList() {
-  const [users, setUsers] = useState([]);
+export default function UserList({users, setUsers}) {
 
   useEffect(() => {
     (async () => {
@@ -35,7 +34,7 @@ export default function UserList() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user, index) => (
+          {users && users.map((user, index) => (
             <TableRow
               key={index}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
