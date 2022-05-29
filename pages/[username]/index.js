@@ -16,9 +16,11 @@ import Link from "next/link";
 import Image from "next/image";
 const UserDetail = () => {
   const router = useRouter();
+  // username variable
   const { username } = router.query;
   const [user, setUser] = useState({});
   const [repos, setRepos] = useState([]);
+  // Sends a http request on load and when the username variable has been populated.
   useEffect(() => {
     (async () => {
       const { data } = await axios(`https://api.github.com/users/${username}`);
@@ -105,46 +107,54 @@ const UserDetail = () => {
                   </Box>
                 </TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  Public Repos
-                </TableCell>
-                <TableCell align="right">
-                  <Box>
-                    <Typography variant="h6">{user.public_repos}</Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  Public Gists
-                </TableCell>
-                <TableCell align="right">
-                  <Box>
-                    <Typography variant="h6">{user.public_gists}</Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  Followers
-                </TableCell>
-                <TableCell align="right">
-                  <Box>
-                    <Typography variant="h6">{user.followers}</Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell component="th" scope="row">
-                  Following
-                </TableCell>
-                <TableCell align="right">
-                  <Box>
-                    <Typography variant="h6">{user.following}</Typography>
-                  </Box>
-                </TableCell>
-              </TableRow>
+              <Link href={`/${username}/repos`}>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    Public Repos
+                  </TableCell>
+                  <TableCell align="right">
+                    <Box>
+                      <Typography variant="h6">{user.public_repos}</Typography>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              </Link>
+              <Link href={`/${username}/gists`}>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    Public Gists
+                  </TableCell>
+                  <TableCell align="right">
+                    <Box>
+                      <Typography variant="h6">{user.public_gists}</Typography>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              </Link>
+              <Link href={`/${username}/followers`}>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    Followers
+                  </TableCell>
+                  <TableCell align="right">
+                    <Box>
+                      <Typography variant="h6">{user.followers}</Typography>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              </Link>
+              <Link href={`/${username}/following`}>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    Following
+                  </TableCell>
+                  <TableCell align="right">
+                    <Box>
+                      <Typography variant="h6">{user.following}</Typography>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              </Link>
             </TableBody>
           </Table>
         </TableContainer>
