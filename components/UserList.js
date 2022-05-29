@@ -9,9 +9,8 @@ import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import axios from "axios";
-
-export default function UserList({users, setUsers}) {
-
+import Link from "next/Link";
+export default function UserList({ users, setUsers }) {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(
@@ -34,24 +33,30 @@ export default function UserList({users, setUsers}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users && users.map((user, index) => (
-            <TableRow
-              key={index}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {index + 1}
-              </TableCell>
-              <TableCell align="right">{user.login}</TableCell>
-              <TableCell align="right">{user.type}</TableCell>
-              <TableCell align="right">
-                <Avatar src={user.avatar_url} sx={{ width: 25, height: 25 }} />
-              </TableCell>
-              <TableCell align="right">
-                <ArrowRightAltIcon />
-              </TableCell>
-            </TableRow>
-          ))}
+          {users &&
+            users.map((user, index) => (
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {index + 1}
+                </TableCell>
+                <TableCell align="right">{user.login}</TableCell>
+                <TableCell align="right">{user.type}</TableCell>
+                <TableCell align="right">
+                  <Avatar
+                    src={user.avatar_url}
+                    sx={{ width: 25, height: 25 }}
+                  />
+                </TableCell>
+                <TableCell align="right">
+                  <Link href={`/${user.login}`}>
+                    <ArrowRightAltIcon />
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
