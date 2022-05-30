@@ -11,7 +11,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import axios from "axios";
 import Link from "next/Link";
 import { useRouter } from "next/router";
-export default function gists() {
+export default function Gists() {
   const [gists, setGists] = useState([])
   const router = useRouter();
   const { username } = router.query;
