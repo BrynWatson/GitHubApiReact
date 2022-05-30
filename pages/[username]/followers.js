@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import axios from "axios";
-import Link from "next/Link";
+import Link from "next/link";
 import { useRouter } from "next/router";
 export default function Followers() {
   const [users, setUsers] = useState([])
